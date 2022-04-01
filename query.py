@@ -1,5 +1,6 @@
 import requests
 import argparse
+from pprint import pprint
 
 parser = argparse.ArgumentParser(description='Get Formula 1 standings.')
 parser.add_argument('request', type=str,
@@ -14,4 +15,6 @@ def ergast_retrieve(api_endpoint: str):
     return response
 
 
-result = ergast_retrieve('current/driverStandings')
+if args.request == 'driver-standings':
+    result = ergast_retrieve('current/driverStandings')
+    pprint(result)
