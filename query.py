@@ -1,5 +1,6 @@
 import requests
 import argparse
+import termtables as tt
 from pprint import pprint
 
 parser = argparse.ArgumentParser(description='Get Formula 1 standings.')
