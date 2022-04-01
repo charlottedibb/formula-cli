@@ -1,4 +1,7 @@
 import requests
+import argparse
+
+
 
 def ergast_retrieve(api_endpoint: str):
   url = f'https://ergast.com/api/f1/{api_endpoint}.json'
