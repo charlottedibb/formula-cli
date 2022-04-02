@@ -9,7 +9,7 @@ df = pd.read_csv('./Countries-List.csv')
 
 parser = argparse.ArgumentParser(description='Get Formula 1 standings.')
 parser.add_argument('request', type=str,
-                    help="Enter the requested info, e.g. driver-standings")
+                    help="Enter the requested standings, e.g. drivers, constructors")
 args = parser.parse_args()
 
 
