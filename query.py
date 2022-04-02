@@ -37,7 +37,12 @@ def format_driver_standings(driver_standings: list):
     return driver_data
 
 
-if args.request == 'driver-standings':
+def format_constructor_standings(constructor_standings: list):
+    constructors = constructor_standings['StandingsTable']['StandingsLists'][0]['ConstructorStandings']
+    return constructors
+
+
+if args.request == 'drivers':
     driver_standings = ergast_retrieve('current/driverStandings')
 
     data = format_driver_standings(driver_standings)
@@ -50,3 +55,9 @@ if args.request == 'driver-standings':
         style=tt.styles.booktabs,
         alignment="lllr"
     )
+
+if args.request == 'constructors':
+    constructor_standings = ergast_retrieve('current/constructorStandings')
+
+    data = format_constructor_standings(constructor_standings)
+    pprint(data)
