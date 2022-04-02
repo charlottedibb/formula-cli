@@ -18,5 +18,8 @@ def ergast_retrieve(api_endpoint: str):
 if args.request == 'driver-standings':
     result = ergast_retrieve('current/driverStandings')
     drivers = result['StandingsTable']['StandingsLists'][0]['DriverStandings']
+    driver_data = []
     for driver in drivers:
-      pprint(driver['Driver']['code'])
+        driver_data.append(
+            [driver['position'], driver['Driver']['code'], driver['points']])
+    pprint(driver_data)
