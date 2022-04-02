@@ -39,7 +39,14 @@ def format_driver_standings(driver_standings: list):
 
 def format_constructor_standings(constructor_standings: list):
     constructors = constructor_standings['StandingsTable']['StandingsLists'][0]['ConstructorStandings']
-    return constructors
+    constructor_data = []
+    for constructor in constructors:
+        country_code = get_country_code(
+            constructor['Constructor']['nationality'])
+        emoji = flag.flag(country_code)
+        constructor_data.append([constructor['position'], emoji + "  " +
+                                constructor['Constructor']['name'], constructor['points']])
+    return constructor_data
 
 
 if args.request == 'drivers':
@@ -60,4 +67,12 @@ if args.request == 'constructors':
     constructor_standings = ergast_retrieve('current/constructorStandings')
 
     data = format_constructor_standings(constructor_standings)
-    pprint(data)
+
+    header = ["Pos", "Constructor", "Points"]
+
+    tt.print(
+        data=data,
+        header=header,
+        style=tt.styles.booktabs,
+        alignment="llr"
+    )
