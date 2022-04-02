@@ -12,8 +12,10 @@ parser.add_argument('request', type=str,
                     help="Enter the requested info, e.g. driver-standings")
 args = parser.parse_args()
 
+
 def get_country_code(nationality: str):
     return df['ISO 3166 Code'][df['Demonym'] == nationality].values[0]
+
 
 def ergast_retrieve(api_endpoint: str):
     url = f'https://ergast.com/api/f1/{api_endpoint}.json'
@@ -26,6 +28,8 @@ if args.request == 'driver-standings':
     drivers = result['StandingsTable']['StandingsLists'][0]['DriverStandings']
     driver_data = []
     for driver in drivers:
+        country_code = get_country_code(driver['Driver']['nationality'])
+        emoji = flag.flag(country_code)
         driver_data.append(
-            [driver['position'], driver['Driver']['code'], driver['points']])
+            [driver['position'], emoji, driver['Driver']['code'], driver['points']])
     pprint(driver_data)
