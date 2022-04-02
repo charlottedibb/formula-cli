@@ -29,8 +29,11 @@ def format_driver_standings(driver_standings: list):
     for driver in drivers:
         country_code = get_country_code(driver['Driver']['nationality'])
         emoji = flag.flag(country_code)
+        initial = driver['Driver']['givenName'][0]
+        familyName = driver['Driver']['familyName']
+        name_and_flag = f'{emoji}  {initial}. {familyName}'
         driver_data.append(
-            [driver['position'], emoji + "  " + driver['Driver']['code'], driver['Constructors'][0]['name'], driver['points']])
+            [driver['position'], name_and_flag, driver['Constructors'][0]['name'], driver['points']])
     return driver_data
 
 
