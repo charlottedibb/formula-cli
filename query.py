@@ -2,8 +2,6 @@ import requests
 import argparse
 import pandas as pd
 import termtables as tt
-import pycountry
-# from countryinfo import CountryInfo
 from pprint import pprint
 
 df = pd.read_csv('./Countries-List.csv')
