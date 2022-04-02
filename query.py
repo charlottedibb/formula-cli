@@ -31,5 +31,13 @@ if args.request == 'driver-standings':
         country_code = get_country_code(driver['Driver']['nationality'])
         emoji = flag.flag(country_code)
         driver_data.append(
-            [driver['position'], emoji, driver['Driver']['code'], driver['points']])
-    pprint(driver_data)
+            [driver['position'], emoji + "  " + driver['Driver']['code'], driver['points']])
+
+    header = ["Pos", "Driver", "Points"]
+
+    tt.print(
+        data=driver_data,
+        header=header,
+        style=tt.styles.booktabs,
+        alignment="ccc"
+    )
