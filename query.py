@@ -1,6 +1,7 @@
 import requests
 import argparse
 import termtables as tt
+import pycountry
 from pprint import pprint
 
 parser = argparse.ArgumentParser(description='Get Formula 1 standings.')
