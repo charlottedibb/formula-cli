@@ -1,5 +1,6 @@
 import requests
 import argparse
+import flag
 import pandas as pd
 import termtables as tt
 from pprint import pprint
