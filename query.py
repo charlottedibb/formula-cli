@@ -23,8 +23,7 @@ def ergast_retrieve(api_endpoint: str):
     return response['MRData']
 
 
-if args.request == 'driver-standings':
-    driver_standings = ergast_retrieve('current/driverStandings')
+def format_driver_standings(driver_standings: list):
     drivers = driver_standings['StandingsTable']['StandingsLists'][0]['DriverStandings']
     driver_data = []
     for driver in drivers:
@@ -32,11 +31,18 @@ if args.request == 'driver-standings':
         emoji = flag.flag(country_code)
         driver_data.append(
             [driver['position'], emoji + "  " + driver['Driver']['code'], driver['Constructors'][0]['name'], driver['points']])
+    return driver_data
+
+
+if args.request == 'driver-standings':
+    driver_standings = ergast_retrieve('current/driverStandings')
+
+    data = format_driver_standings(driver_standings)
 
     header = ["Pos", "Driver", "", "Points"]
 
     tt.print(
-        data=driver_data,
+        data=data,
         header=header,
         style=tt.styles.booktabs,
         alignment="lllr"
